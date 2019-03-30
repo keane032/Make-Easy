@@ -4,10 +4,9 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:text="Escolha uma categoria" />
+        android:text="Make EASY" />
 
     <EditText
         android:layout_width="match_parent"
@@ -23,36 +22,19 @@
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="57dp"
-        android:text="TextView" />
+        android:text="Escolha uma categoria" />
 
-    <Button
-        android:id="@+id/button"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Eletricismo" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cozinha" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Obras" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Moveis" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Entreterimento" />
+        <ListView
+            android:id="@+id/Categorias"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
 
 </LinearLayout>
