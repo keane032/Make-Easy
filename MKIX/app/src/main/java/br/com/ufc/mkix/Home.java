@@ -1,14 +1,11 @@
 package br.com.ufc.mkix;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -42,8 +39,8 @@ public class Home extends AppCompatActivity  {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int posicao, long id) {
                 String cat = (String) parent.getItemAtPosition(posicao);
-                Toast.makeText(Home.this, cat, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent();
+                escolherCategoria(cat);
+
             }
         });
 
@@ -52,8 +49,16 @@ public class Home extends AppCompatActivity  {
     }
 
 
-    public void escolherCategoria(View view){
+    public void escolherCategoria(String categoria){
+        Toast.makeText(Home.this, categoria, Toast.LENGTH_SHORT).show();
+//        Criar intent para lista de trabalhadores
+    }
 
+    public void buscarPorNome(View view){
+        EditText editText = (EditText) findViewById(R.id.CampoDeBusca);
+        String nome = editText.getText().toString();
+        Toast.makeText(Home.this, nome, Toast.LENGTH_SHORT).show();
+        //        Criar intent para lista de trabalhadores
     }
 
 }
