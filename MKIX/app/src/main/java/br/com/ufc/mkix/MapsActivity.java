@@ -10,95 +10,123 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Api;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+
+import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity
-        implements GoogleMap.OnMyLocationButtonClickListener,
+        implements
+        GoogleMap.OnMyLocationButtonClickListener,
         GoogleMap.OnMyLocationClickListener,
-        OnMapReadyCallback {
+        OnMapReadyCallback,
+        ActivityCompat.OnRequestPermissionsResultCallback {
+
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
     private static final int MY_LOCATION_REQUEST_CODE = 250;
     private GoogleMap mMap;
+
+
+    private ArrayList<LatLng> trabalhadoresLocations = new ArrayList<>();
+
+
+    private boolean mPermissionDenied = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        mMap.setMyLocationEnabled(true);
+
+
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
+        enableMyLocation();
 
-//        LocationManager locationManager = (LocationManager)
-//                getSystemService(Context.LOCATION_SERVICE);
-//        Criteria criteria = new Criteria();
-//
-//        Location location = locationManager.getLastKnownLocation(locationManager
-//                .getBestProvider(criteria, false));//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        double latitude = -4.9713434;
-        double longitude = -39.0170893;
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(longitude,latitude)));
+        getTrabalhadoresLocations();
+        addMarkes();
+
 
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == MY_LOCATION_REQUEST_CODE) {
-            if (permissions.length == 1 &&
-                    permissions[0] == Manifest.permission.ACCESS_FINE_LOCATION &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                mMap.setMyLocationEnabled(true);
-            } else {
-                // Show rationale and request permission.
-                Toast.makeText(this, "Permissão recusada", Toast.LENGTH_SHORT).show();
-            }
+
+    private void enableMyLocation() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission to access the location is missing.
+            PermissionUtils.requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE,
+                    Manifest.permission.ACCESS_FINE_LOCATION, true);
+        } else if (mMap != null) {
+            // Access to the location has been granted to the app.
+           mMap.setMyLocationEnabled(true);
+
+//           LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
+//           Location loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//
+//           double latitude = loc.getLatitude();
+//           double longitude = loc.getLongitude();
+//
+//            LatLng cPosition = new LatLng(latitude,longitude);
+//            float zoom = 15;
+//
+//            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cPosition,zoom));
+
         }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode != LOCATION_PERMISSION_REQUEST_CODE) {
+            return;
+        }
+
+        if (PermissionUtils.isPermissionGranted(permissions, grantResults,
+                Manifest.permission.ACCESS_FINE_LOCATION)) {
+            // Enable the my location layer if the permission has been granted.
+            enableMyLocation();
+        } else {
+            // Display the missing permission error dialog when the fragments resume.
+            mPermissionDenied = true;
+        }
+    }
+
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+        if (mPermissionDenied) {
+            // Permission was not granted, display error dialog.
+            showMissingPermissionError();
+            mPermissionDenied = false;
+        }
+
+    }
+
+    private void showMissingPermissionError() {
+        PermissionUtils.PermissionDeniedDialog
+                .newInstance(true).show(getSupportFragmentManager(), "dialog");
     }
 
     @Override
@@ -109,9 +137,23 @@ public class MapsActivity extends FragmentActivity
     @Override
     public boolean onMyLocationButtonClick() {
         Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
-        // Return false so that we don't consume the event and the default behavior still occurs
-        // (the camera animates to the user's current position).
         return false;
+    }
+
+
+    public void getTrabalhadoresLocations(){
+        //Dados não persistentes
+        this.trabalhadoresLocations.add(new LatLng(-4.968840, -39.018357));
+        this.trabalhadoresLocations.add(new LatLng(-4.967266, -39.012839));
+        this.trabalhadoresLocations.add(new LatLng(-4.970783, -39.016714));
+        this.trabalhadoresLocations.add(new LatLng(-4.981299, -39.019041));
+        this.trabalhadoresLocations.add(new LatLng(-4.980700, -39.020918));
+    }
+
+    public void addMarkes(){
+        for (LatLng position:trabalhadoresLocations) {
+            mMap.addMarker(new MarkerOptions().position(position).title("Trabalhador Aqui!"));
+        }
     }
 
 }
