@@ -37,7 +37,7 @@ public class MapsActivity extends FragmentActivity
 
     private static final int MY_LOCATION_REQUEST_CODE = 250;
     private GoogleMap mMap;
-
+    private Location myLocation;
 
     private ArrayList<LatLng> trabalhadoresLocations = new ArrayList<>();
 
@@ -81,19 +81,21 @@ public class MapsActivity extends FragmentActivity
             // Access to the location has been granted to the app.
            mMap.setMyLocationEnabled(true);
 
-//           LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
-//           Location loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//
-//           double latitude = loc.getLatitude();
-//           double longitude = loc.getLongitude();
-//
-//            LatLng cPosition = new LatLng(latitude,longitude);
-//            float zoom = 15;
-//
-//            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cPosition,zoom));
+           LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
+           this.myLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
+           if(myLocation != null){
+               double latitude = myLocation.getLatitude();
+               double longitude = myLocation.getLongitude();
+
+                LatLng cPosition = new LatLng(latitude,longitude);
+                float zoom = 15;
+
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cPosition,zoom));
+           }
         }
     }
+
 
 
     @Override
