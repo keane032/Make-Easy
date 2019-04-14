@@ -38,7 +38,7 @@ public class MapsActivity extends FragmentActivity
     private static final int MY_LOCATION_REQUEST_CODE = 250;
     private GoogleMap mMap;
     private Location myLocation;
-
+    private float zoom = 15;
     private ArrayList<LatLng> trabalhadoresLocations = new ArrayList<>();
 
 
@@ -57,8 +57,6 @@ public class MapsActivity extends FragmentActivity
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-
 
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
@@ -87,10 +85,7 @@ public class MapsActivity extends FragmentActivity
            if(myLocation != null){
                double latitude = myLocation.getLatitude();
                double longitude = myLocation.getLongitude();
-
                 LatLng cPosition = new LatLng(latitude,longitude);
-                float zoom = 15;
-
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cPosition,zoom));
            }
         }
