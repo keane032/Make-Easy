@@ -1,4 +1,4 @@
-package br.com.ufc.mkix;
+package br.com.ufc.mkix.UI.Activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.ufc.mkix.R;
 
 public class Home extends AppCompatActivity  {
 

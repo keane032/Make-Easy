@@ -127,5 +127,18 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewSenha"
         app:layout_constraintVertical_bias="0.0" />
 
+    <Button
+        android:layout_width="159dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:onClick="cadastrarCliente"
+        android:text="Salvar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EditTextSenha" />
 
 </android.support.constraint.ConstraintLayout>

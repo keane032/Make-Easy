@@ -18,7 +18,7 @@
         android:id="@+id/CampoDeBusca"
         style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
         android:layout_width="match_parent"
-        android:layout_height="44dp" />
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/button3"
@@ -48,7 +48,7 @@
         <ListView
             android:id="@+id/Categorias"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="367dp"
             android:layout_gravity="center_vertical" />
 
 

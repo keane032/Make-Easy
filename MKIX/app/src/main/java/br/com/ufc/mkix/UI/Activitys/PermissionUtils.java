@@ -1,4 +1,4 @@
-package br.com.ufc.mkix;
+package br.com.ufc.mkix.UI.Activitys;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.widget.Toast;
+
+import br.com.ufc.mkix.R;
 
 public class PermissionUtils {
 
