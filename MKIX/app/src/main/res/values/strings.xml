@@ -4,4 +4,14 @@
     <string name="location_permission_denied">Negado</string>
     <string name="permission_required_toast">Aceito</string>
     <string name="permission_rationale_location">Eu</string>
+    <string name="email">Email</string>
+    <string name="sobrenome">Sobrenome</string>
+    <string name="cpf">CPF</string>
+    <string name="senha">Senha</string>
+    <string name="nome">Nome</string>
+    <string name="descricao">Descrição</string>
+    <string name="localizacao">Localização</string>
+    <string name="foto">Foto</string>
+    <string name="contatos">Contatos</string>
+    <string name="posicao">Posição</string>
 </resources>
