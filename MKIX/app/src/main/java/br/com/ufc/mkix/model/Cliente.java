@@ -7,8 +7,8 @@ import java.util.List;
 public class Cliente extends Usuario {
     private Issue issue;
 
-    public Cliente(Long id, String nome, String email, LatLng position, List<Contato> contatos, Issue issue) {
-        super(id, nome, email, position, contatos);
+    public Cliente(Long id, String nome, String sobrenome, String email, String senha, LatLng position, List<Contato> contatos, Issue issue) {
+        super(id, nome, sobrenome, email, senha, position, contatos);
         this.issue = issue;
     }
 

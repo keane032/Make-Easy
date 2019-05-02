@@ -137,10 +137,10 @@ public class MapsActivity extends FragmentActivity
     public void getTrabalhadoresLocations(){
         //Dados não persistentes
         this.trabalhadoresLocations.add(new LatLng(-4.968840, -39.018357));
-        this.trabalhadoresLocations.add(new LatLng(-4.967266, -39.012839));
-        this.trabalhadoresLocations.add(new LatLng(-4.970783, -39.016714));
-        this.trabalhadoresLocations.add(new LatLng(-4.981299, -39.019041));
-        this.trabalhadoresLocations.add(new LatLng(-4.980700, -39.020918));
+//        this.trabalhadoresLocations.add(new LatLng(-4.967266, -39.012839));
+//        this.trabalhadoresLocations.add(new LatLng(-4.970783, -39.016714));
+//        this.trabalhadoresLocations.add(new LatLng(-4.981299, -39.019041));
+//        this.trabalhadoresLocations.add(new LatLng(-4.980700, -39.020918));
     }
 
     public void addMarkes(){

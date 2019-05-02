@@ -10,17 +10,30 @@ import br.com.ufc.mkix.model.enums.Categoria;
 public class Trabalhador extends Usuario {
     private List<Categoria> skills;
     private String descricao;
+    private int photoId;
 
     public Trabalhador(Long id,
                        String nome,
+                       String sobrenome,
                        String email,
+                       String senha,
                        LatLng position,
                        List<Contato> contatos,
                        List<Categoria> skills,
-                       String descricao) {
-        super(id, nome, email, position, contatos);
+                       String descricao,
+                       int photoId) {
+        super(id, nome, sobrenome, email, senha, position, contatos);
         this.skills = skills;
         this.descricao = descricao;
+        this.photoId =photoId;
+    }
+
+    public int getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(int photoId) {
+        this.photoId = photoId;
     }
 
     public Trabalhador() {

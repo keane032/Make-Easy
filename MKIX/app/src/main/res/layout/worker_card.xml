@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,12 +30,12 @@
                     android:id="@+id/user_photo"
                     android:layout_width="132dp"
                     android:layout_height="133dp"
-                    app:srcCompat="@drawable/image"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginRight="16dp"
                     android:layout_marginEnd="16dp"
-                    android:contentDescription="@string/foto" />
+                    android:layout_marginRight="16dp"
+                    android:contentDescription="@string/foto"
+                    app:srcCompat="@mipmap/ic_launcher" />
 
                 <TextView
                     android:id="@+id/user_nome"
@@ -51,7 +51,7 @@
                     android:layout_toEndOf="@id/user_photo" />
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/user_descricao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/user_photo"
@@ -62,29 +62,30 @@
                     android:layout_toEndOf="@id/user_photo" />
 
                 <ImageButton
-                    android:id="@+id/positionButton"
+                    android:id="@+id/buttonPosition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textView7"
+                    android:layout_below="@+id/user_descricao"
                     android:layout_alignStart="@+id/user_nome"
+                    android:layout_alignLeft="@+id/user_nome"
                     android:layout_alignParentBottom="false"
                     android:layout_marginStart="177dp"
+                    android:layout_marginLeft="177dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginBottom="1dp"
                     android:adjustViewBounds="false"
                     android:background="@android:color/white"
+                    android:contentDescription="@string/posicao"
                     android:cropToPadding="false"
+                    android:onClick="onClickGetPosition"
                     app:srcCompat="@drawable/position"
-                    android:layout_alignLeft="@+id/user_nome"
-                    android:layout_marginLeft="177dp"
-                    tools:ignore="VectorDrawableCompat"
-                    android:contentDescription="@string/posicao" />
+                    tools:ignore="VectorDrawableCompat" />
 
                 <ImageButton
-                    android:id="@+id/imageButton4"
+                    android:id="@+id/buttonContatos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/textView7"
+                    android:layout_above="@+id/user_descricao"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="false"
                     android:layout_marginStart="241dp"
@@ -93,12 +94,12 @@
                     android:adjustViewBounds="false"
                     android:background="@android:color/white"
                     android:cropToPadding="false"
-                    app:srcCompat="@drawable/callIcon"
+                    app:srcCompat="@drawable/call_icon"
                     tools:ignore="VectorDrawableCompat"
                     android:contentDescription="@string/contatos" />
 
                 <ImageButton
-                    android:id="@+id/imageButton5"
+                    android:id="@+id/buttonMail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/user_nome"
@@ -108,7 +109,7 @@
                     android:layout_marginRight="155dp"
                     android:layout_marginBottom="-73dp"
                     android:background="@android:color/white"
-                    app:srcCompat="@drawable/mailIcon"
+                    app:srcCompat="@drawable/mail_icon"
                     android:contentDescription="@string/email"
                     tools:ignore="VectorDrawableCompat" />
 

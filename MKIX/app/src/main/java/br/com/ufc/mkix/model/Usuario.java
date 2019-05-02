@@ -8,14 +8,18 @@ import java.util.List;
 public abstract class Usuario {
     private Long id;
     private String nome;
+    private String sobrenome;
     private String email;
+    private String senha;
     private LatLng position;
     private List<Contato> contatos;
 
-    public Usuario(Long id, String nome, String email, LatLng position, List<Contato> contatos) {
+    public Usuario(Long id, String nome, String sobrenome,String email, String senha,LatLng position, List<Contato> contatos) {
         this.id = id;
         this.nome = nome;
+        this.sobrenome = sobrenome;
         this.email = email;
+        this.senha = senha;
         this.position = position;
         this.contatos = contatos;
     }
@@ -23,7 +27,9 @@ public abstract class Usuario {
     public Usuario() {
         this.id = 0L;
         this.nome = "";
+        this.sobrenome = "";
         this.email = "";
+        this.senha = "";
         this.position = new LatLng(0,0);
         this.contatos = new ArrayList<>();
     }

@@ -60,7 +60,7 @@ public class Home extends AppCompatActivity  {
     }
 
     public void listarTrabalhadoresPorCategoria(String categoria){
-        Intent intent = new Intent(this, MapsActivity.class);
+        Intent intent = new Intent(this, TrabalhadoresActivity.class);
         startActivity(intent);
     }
 }
