@@ -93,10 +93,11 @@
                     android:layout_marginBottom="-72dp"
                     android:adjustViewBounds="false"
                     android:background="@android:color/white"
+                    android:contentDescription="@string/contatos"
                     android:cropToPadding="false"
+                    android:onClick="onClickCall"
                     app:srcCompat="@drawable/call_icon"
-                    tools:ignore="VectorDrawableCompat"
-                    android:contentDescription="@string/contatos" />
+                    tools:ignore="VectorDrawableCompat" />
 
                 <ImageButton
                     android:id="@+id/buttonMail"
@@ -109,8 +110,9 @@
                     android:layout_marginRight="155dp"
                     android:layout_marginBottom="-73dp"
                     android:background="@android:color/white"
-                    app:srcCompat="@drawable/mail_icon"
                     android:contentDescription="@string/email"
+                    android:onClick="onClickSendEmail"
+                    app:srcCompat="@drawable/mail_icon"
                     tools:ignore="VectorDrawableCompat" />
 
             </RelativeLayout>
