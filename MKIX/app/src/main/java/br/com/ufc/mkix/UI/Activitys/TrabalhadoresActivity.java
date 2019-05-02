@@ -40,13 +40,12 @@ public class TrabalhadoresActivity extends AppCompatActivity {
     }
 
     public void onClickSendEmail(View view){
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/html");
-        intent.putExtra(Intent.EXTRA_EMAIL, "email@emailaddress.com");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Make Easy");
-        intent.putExtra(Intent.EXTRA_TEXT, "Preciso da Sua Ajuda!");
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto","abc@gmail.com", null));
 
-        startActivity(Intent.createChooser(intent, "Send Email"));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Make easy");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Preciso de sua ajuda");
+        startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
 
     public void onClickCall(View view){
