@@ -18,11 +18,12 @@ public class Trabalhador extends Usuario {
                        String email,
                        String senha,
                        LatLng position,
+                       String cpf,
                        List<Contato> contatos,
                        List<Categoria> skills,
                        String descricao,
                        int photoId) {
-        super(id, nome, sobrenome, email, senha, position, contatos);
+        super(id, nome, sobrenome, email, senha, position, cpf, contatos);
         this.skills = skills;
         this.descricao = descricao;
         this.photoId =photoId;

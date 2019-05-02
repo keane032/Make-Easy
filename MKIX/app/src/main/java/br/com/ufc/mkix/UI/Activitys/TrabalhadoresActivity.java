@@ -50,7 +50,8 @@ public class TrabalhadoresActivity extends AppCompatActivity {
     }
 
     public void onClickCall(View view){
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "88898989898"));
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:0123456789"));
         startActivity(intent);
     }
 
@@ -67,12 +68,12 @@ public class TrabalhadoresActivity extends AppCompatActivity {
         categorias.add(Categoria.ELETRICISTA);
         categorias.add(Categoria.COZINHA);
 
-        teste.add(new Trabalhador(1L,"Paulo","Oliveira","email@email.com","123qwe",new LatLng(-4.980706, -39.021918),contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image));
-        teste.add(new Trabalhador(1L,"Lisa","Hofman","email@email.com","123qwe",new LatLng(-4.980705, -39.022918),contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__1_));
-        teste.add(new Trabalhador(1L,"Laura","Ferreira","email@email.com","123qwe",new LatLng(-4.980704, -39.023918),contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__2_));
-        teste.add(new Trabalhador(1L,"Isabella","Coutinho","email@email.com","123qwe",new LatLng(-4.980703, -39.024918),contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__3_));
-        teste.add(new Trabalhador(1L,"Richard","Farias","email@email.com","123qwe",new LatLng(-4.980702, -39.025918),contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__4_));
-        teste.add(new Trabalhador(1L,"Arnaldo","dos Santos","email@email.com","123qwe",new LatLng(-4.980701, -39.026918),contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__5_));
+        teste.add(new Trabalhador(1L,"Paulo","Oliveira","email@email.com","123qwe",new LatLng(-4.980706, -39.021918),"",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image));
+        teste.add(new Trabalhador(1L,"Lisa","Hofman","email@email.com","123qwe",new LatLng(-4.980705, -39.022918), "",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__1_));
+        teste.add(new Trabalhador(1L,"Laura","Ferreira","email@email.com","123qwe",new LatLng(-4.980704, -39.023918),"",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__2_));
+        teste.add(new Trabalhador(1L,"Isabella","Coutinho","email@email.com","123qwe",new LatLng(-4.980703, -39.024918),"",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__3_));
+        teste.add(new Trabalhador(1L,"Richard","Farias","email@email.com","123qwe",new LatLng(-4.980702, -39.025918),"",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__4_));
+        teste.add(new Trabalhador(1L,"Arnaldo","dos Santos","email@email.com","123qwe",new LatLng(-4.980701, -39.026918),"",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__5_));
 
         return teste;
     }

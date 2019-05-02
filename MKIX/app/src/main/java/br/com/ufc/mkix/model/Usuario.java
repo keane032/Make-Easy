@@ -12,9 +12,10 @@ public abstract class Usuario {
     private String email;
     private String senha;
     private LatLng position;
+    private String cpf;
     private List<Contato> contatos;
 
-    public Usuario(Long id, String nome, String sobrenome,String email, String senha,LatLng position, List<Contato> contatos) {
+    public Usuario(Long id, String nome, String sobrenome,String email, String senha,LatLng position, String cpf, List<Contato> contatos) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -22,6 +23,7 @@ public abstract class Usuario {
         this.senha = senha;
         this.position = position;
         this.contatos = contatos;
+        this.cpf = cpf;
     }
 
     public Usuario() {
@@ -31,6 +33,7 @@ public abstract class Usuario {
         this.email = "";
         this.senha = "";
         this.position = new LatLng(0,0);
+        this.cpf = "";
         this.contatos = new ArrayList<>();
     }
 
@@ -72,5 +75,13 @@ public abstract class Usuario {
 
     public void setContatos(List<Contato> contatos) {
         this.contatos = contatos;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }
