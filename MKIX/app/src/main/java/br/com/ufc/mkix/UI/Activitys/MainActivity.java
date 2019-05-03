@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import br.com.ufc.mkix.R;
+import br.com.ufc.mkix.Sobre;
 import br.com.ufc.mkix.UI.Activitys.ClienteActivity;
 import br.com.ufc.mkix.UI.Activitys.Home;
 
@@ -40,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.navigation_about){
-            //TODO
+            Intent intent = new Intent(this, Sobre.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
