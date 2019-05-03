@@ -56,10 +56,10 @@ public class RVTrabalhadorAdapter extends RecyclerView.Adapter<RVTrabalhadorAdap
 
         public TrabalhadorViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.cv = (CardView)itemView.findViewById(R.id.cv_id);
-            this.tvNome = (TextView)itemView.findViewById(R.id.user_nome);
-            this.tvDescricao = (TextView)itemView.findViewById(R.id.user_descricao);
-            this.ivPhoto = (ImageView) itemView.findViewById(R.id.user_photo);
+            this.cv = itemView.findViewById(R.id.cv_id);
+            this.tvNome = itemView.findViewById(R.id.user_nome);
+            this.tvDescricao = itemView.findViewById(R.id.user_descricao);
+            this.ivPhoto = itemView.findViewById(R.id.user_photo);
         }
     }
 }

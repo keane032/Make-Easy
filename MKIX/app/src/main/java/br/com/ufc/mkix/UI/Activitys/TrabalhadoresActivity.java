@@ -22,13 +22,15 @@ import br.com.ufc.mkix.model.enums.Categoria;
 public class TrabalhadoresActivity extends AppCompatActivity {
 
 
+    private List<Trabalhador> trabalhadores = initValues();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trabalhadores);
 
         RecyclerView rv = findViewById(R.id.rv_trabalhadores);
-        RVTrabalhadorAdapter RVAdapter = new RVTrabalhadorAdapter(initValues());
+        RVTrabalhadorAdapter RVAdapter = new RVTrabalhadorAdapter(trabalhadores);
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rv.setLayoutManager(llm);
         rv.setAdapter(RVAdapter);
@@ -54,6 +56,14 @@ public class TrabalhadoresActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onClickgGetInfo(View view){
+        Intent intent = new Intent(this, TrabalhadorInfoActivitiy.class);
+        intent.putExtra("nome",trabalhadores.get(0).getNome());
+        intent.putExtra("email",trabalhadores.get(0).getEmail());
+        intent.putExtra("contato",trabalhadores.get(0).getContatos().get(0).getNumero());
+        intent.putExtra("photoId",trabalhadores.get(0).getPhotoId());
+        startActivity(intent);
+    }
 
     private List<Trabalhador> initValues(){
         List<Trabalhador> teste = new ArrayList<>();

@@ -19,7 +19,9 @@
         <android.support.v7.widget.CardView
             android:id="@+id/cv_id"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="onClickgGetInfo">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -41,25 +43,25 @@
                     android:id="@+id/user_nome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/user_photo"
                     android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@id/user_photo"
+                    android:layout_toRightOf="@id/user_photo"
                     android:text="@string/nome"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textSize="35sp"
                     android:typeface="normal"
-                    app:fontFamily="sans-serif"
-                    android:layout_toEndOf="@id/user_photo" />
+                    app:fontFamily="sans-serif" />
 
                 <TextView
                     android:id="@+id/user_descricao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/user_photo"
                     android:layout_below="@id/user_nome"
+                    android:layout_toEndOf="@id/user_photo"
+                    android:layout_toRightOf="@id/user_photo"
                     android:text="@string/descricao"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textStyle="italic"
-                    android:layout_toEndOf="@id/user_photo" />
+                    android:textStyle="italic" />
 
                 <ImageButton
                     android:id="@+id/buttonPosition"
