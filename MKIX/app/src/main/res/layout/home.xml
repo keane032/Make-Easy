@@ -11,33 +11,26 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:gravity="center"
-        android:text="Make EASY"
+        android:text="Categorias"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="24sp" />
 
     <AutoCompleteTextView
         android:id="@+id/CampoDeBusca"
         style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:hint="Escolha uma categoria" />
 
     <Button
         android:id="@+id/button3"
+        android:text="Buscar"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="145dp"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
         android:onClick="buscarPorNome"
-        android:text="Buscar"
         android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:text="Escolha uma categoria"
-        android:textSize="24sp"
-        android:gravity="center"/>
-
 
 
     <LinearLayout
@@ -48,6 +41,7 @@
 
         <ListView
             android:id="@+id/Categorias"
+            style="@android:style/Widget.Material.ListView.DropDown"
             android:layout_width="match_parent"
             android:layout_height="367dp"
             android:layout_gravity="center_vertical" />

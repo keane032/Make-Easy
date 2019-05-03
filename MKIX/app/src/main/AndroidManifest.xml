@@ -18,7 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Sobre"></activity>
+        <activity android:name=".UI.Activitys.adapters.Sobre"></activity>
         <activity android:name=".UI.Activitys.TrabalhadorInfoActivitiy" />
         <activity android:name=".UI.Activitys.TrabalhadoresActivity" />
         <!--

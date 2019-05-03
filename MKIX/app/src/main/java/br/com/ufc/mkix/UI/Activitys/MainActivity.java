@@ -6,12 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import br.com.ufc.mkix.R;
-import br.com.ufc.mkix.Sobre;
-import br.com.ufc.mkix.UI.Activitys.ClienteActivity;
-import br.com.ufc.mkix.UI.Activitys.Home;
+import br.com.ufc.mkix.UI.Activitys.adapters.Sobre;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -12,23 +12,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="169dp"
         android:layout_marginLeft="169dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="170dp"
         android:layout_marginRight="170dp"
         android:gravity="center"
         android:text="MKIX"
-        android:textSize="30sp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editText"
-        style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
+        style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:hint="LOGIN"
@@ -39,7 +40,7 @@
 
     <EditText
         android:id="@+id/editText2"
-        style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
+        style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -56,7 +57,7 @@
 
     <Button
         android:id="@+id/button"
-        style="@style/Widget.AppCompat.Button"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="149dp"
         android:layout_height="49dp"
         android:layout_marginTop="32dp"
@@ -71,15 +72,14 @@
 
     <Button
         android:id="@+id/button2"
-        style="@style/Widget.AppCompat.Button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="147dp"
         android:layout_height="48dp"
         android:layout_marginTop="100dp"
-        android:background="@android:color/background_light"
         android:onClick="cadastrar"
-        android:text="CADASTRAR"
+        android:text="Cadastrar"
         android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2" />
