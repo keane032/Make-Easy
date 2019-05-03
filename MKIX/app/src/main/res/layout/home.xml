@@ -14,7 +14,7 @@
         android:text="Make EASY"
         android:textSize="24sp" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/CampoDeBusca"
         style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
         android:layout_width="match_parent"
@@ -26,6 +26,7 @@
         android:layout_width="145dp"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
+        android:onClick="buscarPorNome"
         android:text="Buscar"
         android:textSize="24sp" />
 
