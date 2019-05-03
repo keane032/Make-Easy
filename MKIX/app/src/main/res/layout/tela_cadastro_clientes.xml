@@ -126,7 +126,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSenha"
         app:layout_constraintVertical_bias="0.0"
-        android:inputType="numberPassword"
+        android:inputType="textPassword"
         />
 
     <Button
