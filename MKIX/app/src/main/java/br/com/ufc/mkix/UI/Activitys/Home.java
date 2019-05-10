@@ -84,6 +84,7 @@ public class Home extends AppCompatActivity  {
 
     public void listarTrabalhadoresPorCategoria(String categoria){
         Intent intent = new Intent(this, TrabalhadoresActivity.class);
+        intent.putExtra("categoria",categoria);
         startActivity(intent);
     }
 }
