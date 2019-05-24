@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,8 @@ public class ClienteActivity extends Activity {
 
     ArrayList<Trabalhador> clientes =  new ArrayList<Trabalhador>();
 
+
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,11 @@ public class ClienteActivity extends Activity {
         String scpf = cpf.getText().toString();
         String ssenha = senha.getText().toString();
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        String id = mDatabase.push().getKey();
+
+        mDatabase.child(id).setValue(snome);
 
         List<Contato> contatos = new ArrayList<>();
         contatos.add(new Contato("8889898989","Tim"));
