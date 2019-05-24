@@ -6,10 +6,15 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.pchmn.materialchips.ChipsInput;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.ufc.mkix.R;
 import br.com.ufc.mkix.model.Trabalhador;
+import br.com.ufc.mkix.model.enums.Categoria;
 
 public class TrabalhadorInfoActivitiy extends AppCompatActivity {
 
@@ -18,6 +23,7 @@ public class TrabalhadorInfoActivitiy extends AppCompatActivity {
     private TextView email;
     private TextView nome;
     private TextView contato;
+    private ChipsInput chipsInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,13 @@ public class TrabalhadorInfoActivitiy extends AppCompatActivity {
         trabson.setDescricao(i.getStringExtra("contato"));
         trabson.setEmail(i.getStringExtra("email"));
         trabson.setPhotoId((i.getIntExtra("photoId",R.drawable.ic_launcher_background)));
+
+        String[] skills = i.getStringExtra("skills").split(",");
+        List<Categoria> categorias = new ArrayList<>();
+        for (String cat: skills){
+            categorias.add(Categoria.valueOf(cat));
+        }
+        trabson.setSkills(categorias);
     }
 
     private void updateView(){
@@ -41,12 +54,16 @@ public class TrabalhadorInfoActivitiy extends AppCompatActivity {
         nome.setText(trabson.getNome());
         contato.setText(trabson.getDescricao());
         photo.setImageResource(trabson.getPhotoId());
+        for (Categoria categoria: trabson.getSkills()){
+            chipsInput.addChip(categoria.name(),"Categoria");
+        }
     }
 
     private void initViews(){
-        this.photo = findViewById(R.id.user_info_photo);
-        this.email = findViewById(R.id.user_info_email);
-        this.nome = findViewById(R.id.user_info_nome);
-        this.contato = findViewById(R.id.user_info_contato);
+        photo = findViewById(R.id.user_info_photo);
+        email = findViewById(R.id.user_info_email);
+        nome = findViewById(R.id.user_info_nome);
+        contato = findViewById(R.id.user_info_contato);
+        chipsInput = findViewById(R.id.chips_input);
     }
 }
