@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.ufc.mkix.model.enums.Categoria;
 
-class Issue {
+public class Issue {
     private Long id;
     private String titulo;
     private String descricao;
