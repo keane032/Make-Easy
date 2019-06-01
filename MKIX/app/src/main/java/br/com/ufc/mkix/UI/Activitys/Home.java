@@ -11,8 +11,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,63 +37,68 @@ public class Home extends AppCompatActivity  {
         setContentView(R.layout.home);
 
         mydatabase = FirebaseDatabase.getInstance().getReference("categorias");
-//
-//        database.child("0").setValue(Categoria.EMPREGADA.toString());
-//        database.child("1").setValue(Categoria.MORDOMO.toString());
-//        database.child("2").setValue(Categoria.PEDREIRO.toString());
-//        database.child("3").setValue(Categoria.PISCINEIRO.toString());
-//        database.child("4").setValue(Categoria.ENCANADOR.toString());
-//        database.child("5").setValue(Categoria.DIARISTA.toString());
-//        database.child("6").setValue(Categoria.COZINHA.toString());
-//        database.child("7").setValue(Categoria.CHURRASQUEIRO.toString());
-//        database.child("8").setValue(Categoria.ELETRICISTA.toString());
-//        database.child("9").setValue(Categoria.CARPINTEIRO.toString());
-//        database.child("10").setValue(Categoria.BABA.toString());
 
+//        mydatabase.child("0").setValue(Categoria.EMPREGADA);
+//        mydatabase.child("1").setValue(Categoria.MORDOMO);
+//        mydatabase.child("2").setValue(Categoria.PEDREIRO);
+//        mydatabase.child("3").setValue(Categoria.PISCINEIRO);
+//        mydatabase.child("4").setValue(Categoria.ENCANADOR);
+//        mydatabase.child("5").setValue(Categoria.DIARISTA);
+//        mydatabase.child("6").setValue(Categoria.COZINHA);
+//        mydatabase.child("7").setValue(Categoria.CHURRASQUEIRO);
+//        mydatabase.child("8").setValue(Categoria.ELETRICISTA);
+//        mydatabase.child("9").setValue(Categoria.CARPINTEIRO);
+//        mydatabase.child("10").setValue(Categoria.BABA);
 
-
-        categorias.add(Categoria.EMPREGADA.toString());
-        categorias.add(Categoria.BABA.toString());
-        categorias.add(Categoria.CARPINTEIRO.toString());
-        categorias.add(Categoria.CHURRASQUEIRO.toString());
-        categorias.add(Categoria.COPEIRA.toString());
-        categorias.add(Categoria.COZINHA.toString());
-        categorias.add(Categoria.DIARISTA.toString());
-        categorias.add(Categoria.ELETRICISTA.toString());
-        categorias.add(Categoria.ENCANADOR.toString());
-        categorias.add(Categoria.PISCINEIRO.toString());
-        categorias.add(Categoria.PEDREIRO.toString());
-        categorias.add(Categoria.MORDOMO.toString());
-
-        autoCompleteTextView = findViewById(R.id.CampoDeBusca);
-
-        ViewCategorias = (ListView) findViewById(R.id.Categorias);
-
-        autoCompleteTextView.setThreshold(1); //will start working from first character
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                categorias);
-
-        ArrayAdapter<String> AutoarrayAdapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                categorias);
-
-        autoCompleteTextView.setAdapter(AutoarrayAdapter);
-
-
-        ViewCategorias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mydatabase.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int posicao, long id) {
-                String cat = (String) parent.getItemAtPosition(posicao);
-                listarTrabalhadoresPorCategoria(cat);
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
+                //iterating through all the nodes
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    //getting artist
+                    Categoria categoria = postSnapshot.getValue(Categoria.class);
+                    //adding artist to the list
+                    categorias.add(categoria.toString());
+                }
+
+                autoCompleteTextView = findViewById(R.id.CampoDeBusca);
+
+                ViewCategorias = (ListView) findViewById(R.id.Categorias);
+
+                autoCompleteTextView.setThreshold(1); //will start working from first character
+
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                        getBaseContext(),
+                        android.R.layout.simple_list_item_1,
+                        categorias);
+
+                ArrayAdapter<String> AutoarrayAdapter = new ArrayAdapter<String>(
+                        getBaseContext(),
+                        android.R.layout.simple_list_item_1,
+                        categorias);
+
+                autoCompleteTextView.setAdapter(AutoarrayAdapter);
+
+                ViewCategorias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int posicao, long id) {
+                        String cat = (String) parent.getItemAtPosition(posicao);
+                        listarTrabalhadoresPorCategoria(cat);
+
+                    }
+                });
+
+                ViewCategorias.setAdapter(arrayAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getBaseContext(),"errro",Toast.LENGTH_SHORT).show();
             }
         });
 
-        ViewCategorias.setAdapter(arrayAdapter);
+
 
     }
 
