@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +26,28 @@ public class Home extends AppCompatActivity  {
     ListView ViewCategorias;
     AutoCompleteTextView autoCompleteTextView;
 
+    DatabaseReference mydatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+
+        mydatabase = FirebaseDatabase.getInstance().getReference("categorias");
+//
+//        database.child("0").setValue(Categoria.EMPREGADA.toString());
+//        database.child("1").setValue(Categoria.MORDOMO.toString());
+//        database.child("2").setValue(Categoria.PEDREIRO.toString());
+//        database.child("3").setValue(Categoria.PISCINEIRO.toString());
+//        database.child("4").setValue(Categoria.ENCANADOR.toString());
+//        database.child("5").setValue(Categoria.DIARISTA.toString());
+//        database.child("6").setValue(Categoria.COZINHA.toString());
+//        database.child("7").setValue(Categoria.CHURRASQUEIRO.toString());
+//        database.child("8").setValue(Categoria.ELETRICISTA.toString());
+//        database.child("9").setValue(Categoria.CARPINTEIRO.toString());
+//        database.child("10").setValue(Categoria.BABA.toString());
+
+
 
         categorias.add(Categoria.EMPREGADA.toString());
         categorias.add(Categoria.BABA.toString());

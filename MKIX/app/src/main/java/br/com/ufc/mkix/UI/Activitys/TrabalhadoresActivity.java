@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,8 @@ import br.com.ufc.mkix.model.enums.Categoria;
 
 public class TrabalhadoresActivity extends AppCompatActivity {
 
+
+    private DatabaseReference mDatabase;
 
     private List<Trabalhador> trabalhadores = initValues();
 
@@ -77,12 +81,27 @@ public class TrabalhadoresActivity extends AppCompatActivity {
         categorias.add(Categoria.ELETRICISTA);
         categorias.add(Categoria.COZINHA);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference("trabalhadores");
+
+
+
         teste.add(new Trabalhador(1L,"Paulo","Oliveira","email@email.com","123qwe",new LatLng(-4.980706, -39.021918),"",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image));
         teste.add(new Trabalhador(1L,"Lisa","Hofman","email@email.com","123qwe",new LatLng(-4.980705, -39.022918), "",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__1_));
         teste.add(new Trabalhador(1L,"Laura","Ferreira","email@email.com","123qwe",new LatLng(-4.980704, -39.023918),"",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__2_));
         teste.add(new Trabalhador(1L,"Isabella","Coutinho","email@email.com","123qwe",new LatLng(-4.980703, -39.024918),"",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__3_));
         teste.add(new Trabalhador(1L,"Richard","Farias","email@email.com","123qwe",new LatLng(-4.980702, -39.025918),"",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__4_));
         teste.add(new Trabalhador(1L,"Arnaldo","dos Santos","email@email.com","123qwe",new LatLng(-4.980701, -39.026918),"",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__5_));
+
+
+//
+//        mDatabase.child("0").setValue(new Trabalhador(1L,"Paulo","Oliveira","email@email.com","123qwe",new LatLng(-4.980706, -39.021918),"",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image));
+//        mDatabase.child("1").setValue(new Trabalhador(1L,"Lisa","Hofman","email@email.com","123qwe",new LatLng(-4.980705, -39.022918), "",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__1_));
+//        mDatabase.child("2").setValue(new Trabalhador(1L,"Laura","Ferreira","email@email.com","123qwe",new LatLng(-4.980704, -39.023918),"",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__2_));
+//        mDatabase.child("3").setValue(new Trabalhador(1L,"Isabella","Coutinho","email@email.com","123qwe",new LatLng(-4.980703, -39.024918),"",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__3_));
+//        mDatabase.child("4").setValue(new Trabalhador(1L,"Richard","Farias","email@email.com","123qwe",new LatLng(-4.980702, -39.025918),"",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__4_));
+//        mDatabase.child("5").setValue(new Trabalhador(1L,"Arnaldo","dos Santos","email@email.com","123qwe",new LatLng(-4.980701, -39.026918),"",contatos, categorias,"Olá, quero lhe ajudar", R.drawable.image__5_));
+//
+//
 
         return teste;
     }
