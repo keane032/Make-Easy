@@ -1,4 +1,4 @@
-package br.com.ufc.mkix.UI.Activitys.adapters;
+package br.com.ufc.mkix.UI.adapters;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

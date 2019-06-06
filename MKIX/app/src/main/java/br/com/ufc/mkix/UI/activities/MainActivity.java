@@ -1,4 +1,4 @@
-package br.com.ufc.mkix.UI.Activitys;
+package br.com.ufc.mkix.UI.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import br.com.ufc.mkix.R;
-import br.com.ufc.mkix.UI.Activitys.adapters.Sobre;
+import br.com.ufc.mkix.UI.adapters.Sobre;
 
 public class MainActivity extends AppCompatActivity {
 

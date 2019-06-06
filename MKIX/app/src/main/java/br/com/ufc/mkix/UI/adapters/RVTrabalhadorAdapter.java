@@ -1,11 +1,10 @@
-package br.com.ufc.mkix.UI.Activitys.adapters;
+package br.com.ufc.mkix.UI.adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +17,9 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import br.com.ufc.mkix.R;
-import br.com.ufc.mkix.UI.Activitys.Home;
-import br.com.ufc.mkix.UI.Activitys.TrabalhadorInfoActivitiy;
-import br.com.ufc.mkix.UI.Activitys.TrabalhadoresActivity;
+import br.com.ufc.mkix.UI.activities.TrabalhadorInfoActivitiy;
 import br.com.ufc.mkix.model.Trabalhador;
+import br.com.ufc.mkix.model.enums.Categoria;
 
 public class RVTrabalhadorAdapter extends RecyclerView.Adapter<RVTrabalhadorAdapter.TrabalhadorViewHolder> {
 
@@ -80,10 +78,21 @@ public class RVTrabalhadorAdapter extends RecyclerView.Adapter<RVTrabalhadorAdap
                     Toast toast = Toast.makeText(context, "",Toast.LENGTH_SHORT);
                     toast.show();
 
+                    StringBuilder skills = new StringBuilder();
+
                     intent.putExtra("nome",trabalhadores.get(0).getNome());
                     intent.putExtra("email",trabalhadores.get(0).getEmail());
                     intent.putExtra("contato",trabalhadores.get(0).getContatos().get(0).getNumero());
                     intent.putExtra("photoId",trabalhadores.get(0).getPhotoId());
+                    intent.putExtra("position",trabalhadores.get(0).getPosition().toString());
+
+
+                    for (Categoria skill: trabalhadores.get(0).getSkills()) {
+                        skills.append(skill.name());
+                        skills.append(",");
+                    }
+
+                    intent.putExtra("skills",skills.toString());
 
                     context.startActivity(intent);
                 }

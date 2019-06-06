@@ -1,4 +1,4 @@
-package br.com.ufc.mkix.UI.Activitys;
+package br.com.ufc.mkix.UI.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -113,6 +113,7 @@ public class Home extends AppCompatActivity  {
 
     public void listarTrabalhadoresPorCategoria(String categoria){
         Intent intent = new Intent(this, TrabalhadoresActivity.class);
+        intent.putExtra("categoria",categoria);
         startActivity(intent);
     }
 }

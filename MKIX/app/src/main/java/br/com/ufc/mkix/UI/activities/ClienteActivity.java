@@ -1,4 +1,4 @@
-package br.com.ufc.mkix.UI.Activitys;
+package br.com.ufc.mkix.UI.activities;
 
 import android.Manifest;
 import android.app.Activity;
@@ -12,26 +12,19 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import br.com.ufc.mkix.R;
 import br.com.ufc.mkix.model.Cliente;
-import br.com.ufc.mkix.model.Contato;
-import br.com.ufc.mkix.model.Issue;
 import br.com.ufc.mkix.model.Trabalhador;
-import br.com.ufc.mkix.model.enums.Categoria;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ClienteActivity extends Activity {

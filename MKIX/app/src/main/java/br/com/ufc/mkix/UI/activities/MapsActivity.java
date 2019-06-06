@@ -1,4 +1,4 @@
-package br.com.ufc.mkix.UI.Activitys;
+package br.com.ufc.mkix.UI.activities;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
