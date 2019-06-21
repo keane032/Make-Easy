@@ -53,12 +53,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="147dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
     <Button
         android:id="@+id/button"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="149dp"
         android:layout_height="49dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="22dp"
         android:background="@color/colorPrimary"
         android:onClick="logar"
         android:text="Entrar"
@@ -73,7 +82,7 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="147dp"
         android:layout_height="48dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:onClick="cadastrar"
         android:text="Cadastrar"
         android:textColor="@color/colorPrimary"
