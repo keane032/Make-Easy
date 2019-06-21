@@ -3,7 +3,11 @@ package br.com.ufc.mkix.UI.activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +16,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +35,8 @@ import br.com.ufc.mkix.persistence.PersistenceUnit;
 
 public class Home extends AppCompatActivity  {
 
+    GoogleSignInClient mGoogleSignInClient;
+
     List<String> categorias = new ArrayList<>();
     ListView ViewCategorias;
     AutoCompleteTextView autoCompleteTextView;
@@ -37,15 +48,7 @@ public class Home extends AppCompatActivity  {
     DatabaseReference mydatabase;
     PersistenceUnit persistenceUnit = PersistenceUnit.getInstance();
 
-    Runnable t1 = new Runnable() {
-        public void run() {
-            try{
-               progressDialog.show();
-            } catch (Exception e){}
-        }
-    };
-
-    Runnable t2 = new Runnable() {
+    Runnable dialogThread = new Runnable() {
         public void run() {
             try{
                 syncronizeDatabase();
@@ -61,12 +64,46 @@ public class Home extends AppCompatActivity  {
 
         progressDialog = new ProgressDialog(Home.this);
         progressDialog.setMessage("loading...");
+        progressDialog.show();
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         initFirebase();
 
-        this.t1.run();
-        this.t2.run();
+        this.dialogThread.run();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.loggout_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.logout){
+            logout();
+        }
+
+        return true;
+    }
+
+    private void logout() {
+        mGoogleSignInClient.signOut()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(Home.this,"Successfully signed out",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(Home.this, MainActivity.class));
+                        finish();
+                    }
+                });
     }
 
     private void initFirebase(){
