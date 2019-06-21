@@ -1,5 +1,6 @@
 package br.com.ufc.mkix.UI.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -29,16 +30,43 @@ public class Home extends AppCompatActivity  {
     ListView ViewCategorias;
     AutoCompleteTextView autoCompleteTextView;
 
+    private Boolean ready = false;
+
+    ProgressDialog progressDialog;
+
     DatabaseReference mydatabase;
     PersistenceUnit persistenceUnit = PersistenceUnit.getInstance();
+
+    Runnable t1 = new Runnable() {
+        public void run() {
+            try{
+               progressDialog.show();
+            } catch (Exception e){}
+        }
+    };
+
+    Runnable t2 = new Runnable() {
+        public void run() {
+            try{
+                syncronizeDatabase();
+                progressDialog.dismiss();
+            } catch (Exception e){}
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
+        progressDialog = new ProgressDialog(Home.this);
+        progressDialog.setMessage("loading...");
+
         initFirebase();
-        syncronizeDatabase();
+
+        this.t1.run();
+        this.t2.run();
+
     }
 
     private void initFirebase(){
@@ -48,7 +76,10 @@ public class Home extends AppCompatActivity  {
     }
 
     private void syncronizeDatabase() {
+
+
         mydatabase.child("categorias").addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 categorias.clear();
@@ -60,6 +91,7 @@ public class Home extends AppCompatActivity  {
 
                 initViewCategorias();
                 initAutoCompleteAdapter();
+                ready = true;
             }
 
             @Override
