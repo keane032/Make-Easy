@@ -22,6 +22,7 @@ import java.util.List;
 import br.com.ufc.mkix.R;
 import br.com.ufc.mkix.UI.activities.MapsActivity;
 import br.com.ufc.mkix.UI.activities.TrabalhadorInfoActivitiy;
+import br.com.ufc.mkix.model.Contato;
 import br.com.ufc.mkix.model.Trabalhador;
 import br.com.ufc.mkix.model.enums.Categoria;
 
@@ -69,7 +70,9 @@ public class RVTrabalhadorAdapter extends RecyclerView.Adapter<RVTrabalhadorAdap
             public void onClick(View v) {
                 Context context = v.getContext();
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"+trabalhadores.get(i).getContatos().get(0)));
+                Contato contato = trabalhadores.get(i).getContatos().get(0);
+                Log.d("wqeqweq","tel:"+contato.getNumero());
+                intent.setData(Uri.parse("tel:"+contato.getNumero()));
                 context.startActivity(intent);
             }
         });
