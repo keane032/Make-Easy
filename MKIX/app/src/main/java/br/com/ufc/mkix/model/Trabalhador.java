@@ -5,19 +5,21 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.ufc.mkix.R;
 import br.com.ufc.mkix.model.enums.Categoria;
 
 public class Trabalhador extends Usuario {
     private List<Categoria> skills;
     private String descricao;
-    private int photoId;
+    private int photoId = R.drawable.default_profile;
+
 
     public Trabalhador(Long id,
                        String nome,
                        String sobrenome,
                        String email,
                        String senha,
-                       LatLng position,
+                       String position,
                        String cpf,
                        List<Contato> contatos,
                        List<Categoria> skills,
@@ -29,15 +31,17 @@ public class Trabalhador extends Usuario {
         this.photoId =photoId;
     }
 
+    public Trabalhador(){ }
+
     public int getPhotoId() {
-        return photoId;
+        return this.photoId;
     }
 
     public void setPhotoId(int photoId) {
         this.photoId = photoId;
     }
 
-    public Trabalhador() {
+    public Trabalhador(long id, String paulo, String oliveira, String email, String senha, LatLong latLong, String cpf, List<Contato> contatos, List<Categoria> categorias, String descricao, int image) {
         super();
         this.skills = new ArrayList<>();
         this.descricao = "";

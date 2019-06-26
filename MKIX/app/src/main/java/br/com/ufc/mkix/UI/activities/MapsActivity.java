@@ -1,7 +1,10 @@
 package br.com.ufc.mkix.UI.activities;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -18,7 +21,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.ufc.mkix.R;
 
@@ -37,6 +42,7 @@ public class MapsActivity extends FragmentActivity
     private float zoom = 15;
     private ArrayList<LatLng> trabalhadoresLocations = new ArrayList<>();
 
+    private LatLng posicao;
 
     private boolean mPermissionDenied = false;
 
@@ -48,6 +54,36 @@ public class MapsActivity extends FragmentActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+
+
+
+
+    }
+
+
+    public LatLng getLocationFromAddress(Context context, String strAddress) {
+
+        strAddress = "Rua José de Queiroz Pessoa, 1693 - Centro, Quixadá - CE, 63900-221";
+        Geocoder coder = new Geocoder(context);
+        List<Address> address;
+        LatLng p1 = null;
+
+        try {
+            // May throw an IOException
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+
+            Address location = address.get(0);
+            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
+        return p1;
     }
 
     @Override
@@ -57,7 +93,7 @@ public class MapsActivity extends FragmentActivity
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
         enableMyLocation();
-
+        posicao = getLocationFromAddress(this,"");
         getTrabalhadoresLocations();
         addMarkes();
 
@@ -136,7 +172,8 @@ public class MapsActivity extends FragmentActivity
 
     public void getTrabalhadoresLocations(){
         //Dados não persistentes
-        this.trabalhadoresLocations.add(new LatLng(-4.968840, -39.018357));
+
+        this.trabalhadoresLocations.add(posicao);
 //        this.trabalhadoresLocations.add(new LatLng(-4.967266, -39.012839));
 //        this.trabalhadoresLocations.add(new LatLng(-4.970783, -39.016714));
 //        this.trabalhadoresLocations.add(new LatLng(-4.981299, -39.019041));

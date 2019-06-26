@@ -34,6 +34,8 @@ public class PersistenceUnit extends Application {
         return firebaseDatabase.getReference();
     }
 
-
+    public DatabaseReference getReference(String ref){
+        return firebaseDatabase.getReference(ref);
+    }
 
 }

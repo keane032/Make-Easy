@@ -1,5 +1,6 @@
 package br.com.ufc.mkix.model;
 
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -11,11 +12,12 @@ public abstract class Usuario {
     private String sobrenome;
     private String email;
     private String senha;
-    private LatLng position;
+    private String position;
     private String cpf;
     private List<Contato> contatos;
 
-    public Usuario(Long id, String nome, String sobrenome,String email, String senha,LatLng position, String cpf, List<Contato> contatos) {
+    public Usuario(Long id, String nome, String sobrenome,String email, String senha,
+                   String position, String cpf, List<Contato> contatos) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -32,7 +34,7 @@ public abstract class Usuario {
         this.sobrenome = "";
         this.email = "";
         this.senha = "";
-        this.position = new LatLng(0,0);
+        this.position = "";
         this.cpf = "";
         this.contatos = new ArrayList<>();
     }
@@ -61,11 +63,19 @@ public abstract class Usuario {
         this.email = email;
     }
 
-    public LatLng getPosition() {
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public String getPosition() {
         return position;
     }
 
-    public void setPosition(LatLng position) {
+    public void setPosition(String position) {
         this.position = position;
     }
 
