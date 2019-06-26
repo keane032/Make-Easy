@@ -1,7 +1,9 @@
 package br.com.ufc.mkix.UI.adapters;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +20,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import br.com.ufc.mkix.R;
+import br.com.ufc.mkix.UI.activities.MapsActivity;
 import br.com.ufc.mkix.UI.activities.TrabalhadorInfoActivitiy;
 import br.com.ufc.mkix.model.Trabalhador;
 import br.com.ufc.mkix.model.enums.Categoria;
@@ -48,6 +51,46 @@ public class RVTrabalhadorAdapter extends RecyclerView.Adapter<RVTrabalhadorAdap
                 .load(trabalhadores.get(i).getPhotoId())
                 .error(R.drawable.ic_launcher_background)
                 .into(trabalhadorViewHolder.ivPhoto);
+
+        trabalhadorViewHolder.cv.findViewById(R.id.buttonPosition).setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, MapsActivity.class);
+                intent.putExtra("position",trabalhadores.get(i).getPosition());
+                context.startActivity(intent);
+            }
+        });
+
+        trabalhadorViewHolder.cv.findViewById(R.id.buttonContatos).setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+trabalhadores.get(i).getContatos().get(0)));
+                context.startActivity(intent);
+            }
+        });
+
+        trabalhadorViewHolder.cv.findViewById(R.id.buttonMail).setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        "mailto",trabalhadores.get(i).getEmail(), null));
+
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Make easy");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, trabalhadores.get(i).getNome()+", preciso de sua ajuda!");
+
+                context.startActivity(Intent.createChooser(emailIntent, "Send email..."));;
+            }
+        });
+
+
+
         trabalhadorViewHolder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,37 +143,6 @@ public class RVTrabalhadorAdapter extends RecyclerView.Adapter<RVTrabalhadorAdap
 
             this.ivPhoto = itemView.findViewById(R.id.user_photo);
             this.recyclerView = itemView.findViewById(R.id.rv_trabalhadores);
-
-            cv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Context context = v.getContext();
-                    Log.d("wqqwqe","");
-                    Intent intent = new Intent(context, TrabalhadorInfoActivitiy.class);
-
-                    Toast toast = Toast.makeText(context, "",Toast.LENGTH_SHORT);
-                    toast.show();
-
-                    StringBuilder skills = new StringBuilder();
-
-                    intent.putExtra("nome",trabalhadores.get(0).getNome());
-                    intent.putExtra("email",trabalhadores.get(0).getEmail());
-                    intent.putExtra("contato",trabalhadores.get(0).getContatos().get(0).getNumero());
-                    intent.putExtra("photoId",trabalhadores.get(0).getPhotoId());
-                    intent.putExtra("position",trabalhadores.get(0).getPosition().toString());
-
-
-                    for (Categoria skill: trabalhadores.get(0).getSkills()) {
-                        skills.append(skill.name());
-                        skills.append(",");
-                    }
-
-                    intent.putExtra("skills",skills.toString());
-
-                    context.startActivity(intent);
-                }
-            });
-
         }
 
 

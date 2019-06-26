@@ -22,6 +22,7 @@ public class TrabalhadorInfoActivitiy extends AppCompatActivity {
     private TextView email;
     private TextView nome;
     private TextView contato;
+    private TextView position;
     private ChipsInput chipsInput;
 
 
@@ -38,6 +39,7 @@ public class TrabalhadorInfoActivitiy extends AppCompatActivity {
         Intent i = getIntent();
         trabson.setNome(i.getStringExtra("nome"));
         trabson.setDescricao(i.getStringExtra("contato"));
+        trabson.setPosition(i.getStringExtra("position"));
         trabson.setEmail(i.getStringExtra("email"));
         trabson.setPhotoId((i.getIntExtra("photoId",R.drawable.ic_launcher_background)));
 
@@ -53,6 +55,7 @@ public class TrabalhadorInfoActivitiy extends AppCompatActivity {
         email.setText(trabson.getEmail());
         nome.setText(trabson.getNome());
         contato.setText(trabson.getDescricao());
+        position.setText(trabson.getPosition());
         photo.setImageResource(trabson.getPhotoId());
         for (Categoria categoria: trabson.getSkills()){
             chipsInput.addChip(categoria.name(),"Categoria");
@@ -64,6 +67,7 @@ public class TrabalhadorInfoActivitiy extends AppCompatActivity {
         email = findViewById(R.id.user_info_email);
         nome = findViewById(R.id.user_info_nome);
         contato = findViewById(R.id.user_info_contato);
+        position = findViewById(R.id.user_info_position);
         chipsInput = findViewById(R.id.chips_input);
     }
 }

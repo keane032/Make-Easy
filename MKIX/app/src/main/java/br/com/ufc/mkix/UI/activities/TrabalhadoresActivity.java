@@ -48,14 +48,11 @@ public class TrabalhadoresActivity extends AppCompatActivity {
         mDatabase.addValueEventListener(new ValueEventListener() {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 trabs.clear();
-                int cont = 0;
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Trabalhador trabalhador = postSnapshot.getValue(Trabalhador.class);
                     for (Categoria categoria : trabalhador.getSkills()) {
                        if(cat.equals(categoria.toString())) {
                            trabs.add(trabalhador);
-                           Log.d("wqqeqweqeqw", "" + trabs.get(cont).getNome());
-                           cont++;
                        }
                     }
                 }
@@ -73,26 +70,27 @@ public class TrabalhadoresActivity extends AppCompatActivity {
 
     }
 
-    public void onClickGetPosition(View view){
-        Intent intent = new Intent(this, MapsActivity.class);
-//        intent.putExtra("endereco",categoria);
-        startActivity(intent);
-    }
+//    public void onClickGetPosition(View view){
+//        Intent intent = new Intent(this, MapsActivity.class);
+////        intent.putExtra("endereco",categoria);
+//        startActivity(intent);
+//    }
 
-    public void onClickSendEmail(View view){
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                "mailto","abc@gmail.com", null));
+//    public void onClickSendEmail(View view){
+//        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+//                "mailto","abc@gmail.com", null));
+//
+//        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Make easy");
+//        emailIntent.putExtra(Intent.EXTRA_TEXT, "Preciso de sua ajuda");
+//        startActivity(Intent.createChooser(emailIntent, "Send email..."));
+//    }
 
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Make easy");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Preciso de sua ajuda");
-        startActivity(Intent.createChooser(emailIntent, "Send email..."));
-    }
-
-    public void onClickCall(View view){
-        Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:0123456789"));
-        startActivity(intent);
-    }
+//    public void onClickCall(View view){
+//        Intent intent = new Intent(Intent.ACTION_DIAL);
+//
+//        intent.setData(Uri.parse("tel:0123456789"));
+//        startActivity(intent);
+//    }
 
     public void onClickgGetInfo(View view){
         Intent intent = new Intent(this, TrabalhadorInfoActivitiy.class);

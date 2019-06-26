@@ -63,7 +63,8 @@ public class MapsActivity extends FragmentActivity
 
     public LatLng getLocationFromAddress(Context context, String strAddress) {
 
-        strAddress = "Rua José de Queiroz Pessoa, 1693 - Centro, Quixadá - CE, 63900-221";
+//        strAddress = "Rua José de Queiroz Pessoa, 1693 - Centro, Quixadá - CE, 63900-221";
+        strAddress = getIntent().getStringExtra("position");
         Geocoder coder = new Geocoder(context);
         List<Address> address;
         LatLng p1 = null;
